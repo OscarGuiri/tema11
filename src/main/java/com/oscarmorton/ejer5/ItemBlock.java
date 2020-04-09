@@ -6,6 +6,12 @@ public class ItemBlock {
     protected int cantidad;
     protected int maximaCantidad;
 
+    /**
+     * Contructor del itemBlock
+     * @param nombre El nombre del elemento
+     * @param maximaCantidad La cantidad maxima.Si no es ampliable poner a 1
+     * @param ampliable Si es ampliable o no
+     */
     public ItemBlock(String nombre, int maximaCantidad, boolean ampliable){ // Constructor
         this.nombre = nombre;
         this.ampliable =   ampliable;
@@ -14,12 +20,13 @@ public class ItemBlock {
 
 
     }
+
     public ItemBlock(String nombre){ //Contructor por defecto con string
-        this(nombre,  0, false);
+        this(nombre,  1, false);
 
     }
     public ItemBlock(){ //Contructor por defecto
-        this("Item",  0, false);
+        this("VACIO",  1, false);
 
     }
     /**
@@ -57,5 +64,17 @@ public class ItemBlock {
 
     public boolean isAmpliable() {
         return ampliable;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getMaximaCantidad() {
+        return maximaCantidad;
     }
 }
