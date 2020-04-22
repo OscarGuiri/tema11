@@ -113,17 +113,8 @@ public class Ejer5 {
                         if (espaciosLibres >= numeroAnyadir) { // Si hay espacios libres, creo y el pico
                             item = new Pico();
 
-                            for (int i = 0; contador < numeroAnyadir; i++) { // El bucle continua hasta anyadir todos los items.
+                           anyadirEnEspaciosVaciosNoAmpliable(numeroAnyadir, item);
 
-                                if (blocks.get(i).getNombre().equals("VACIO")) {
-                                    blocks.set(i, item);
-                                    blocks.get(i).setCantidad(1);
-                                    contador++;
-
-                                }
-
-                            }
-                            contador = 0;
                             System.out.println("Creado pico con exito");
                         } else {
                             System.out.println("No hay espacio suficiente");
@@ -149,17 +140,7 @@ public class Ejer5 {
                         if (espaciosLibres >= numeroAnyadir) { // Si hay espacios libres, creo y el pico
                             item = new Espada();
 
-                            for (int i = 0; contador < numeroAnyadir; i++) { // El bucle continua hasta anyadir todos los items.
-
-                                if (blocks.get(i).getNombre().equals("VACIO")) {
-                                    blocks.set(i, item);
-                                    blocks.get(i).setCantidad(1);
-                                    contador++;
-
-                                }
-
-                            }
-                            contador = 0;
+                            anyadirEnEspaciosVaciosNoAmpliable(numeroAnyadir, item);
                         } else {
                             System.out.println("No hay espacio suficiente");
                         }
@@ -169,6 +150,7 @@ public class Ejer5 {
                         System.out.println("El inventario está lleno");
                     }
 
+
                     break;
                 // TO DO!!
                 case 3:
@@ -177,18 +159,8 @@ public class Ejer5 {
                     System.out.println("Hay " + espaciosLibres + " espacios libres");
 
                     numeroAnyadir = pedirCantidadItem("Piedra");
-                    for (int i = 0; i < blocks.size(); i++) {
-
-                        if (blocks.get(i).getNombre().equals("piedra") && blocks.get(i).getCantidad() < 64) { // Si ya hay un bloque de piedra y está menos de 64, anyadimos la piedra
-                            while (blocks.get(i).getCantidad() < 64 && numeroAnyadir != 0) {
-
-                                blocks.get(i).setCantidad(blocks.get(i).getCantidad() + 1);
-                                numeroAnyadir--;
-                            }
-                        }
-
-
-                    }
+                    numeroAnyadir =  anyadirEnEspaciosVaciosAmpliables(numeroAnyadir, "piedra", 64);
+                    anyadido = true;
                     // Si veo que no hay un elemento piedra en el los blockes y aun tengo cantidad para anyadir, busco un blocke vacio.
                     if (numeroAnyadir != 0) {
 
@@ -225,10 +197,12 @@ public class Ejer5 {
 
 
                     }
+                    // Compruebo si se a podido anyadir, sino, lo menciono y digo cuantos objetos an sobrado
                     if (numeroAnyadir == 0 && anyadido) {
                         System.out.println("Anyadido correctamente");
                     } else {
                         System.out.println("No se puede anyadir mas al inventario");
+                        System.out.println("A sobrado " + numeroAnyadir);
                     }
 
 
@@ -240,18 +214,8 @@ public class Ejer5 {
                     System.out.println("Hay " + espaciosLibres + " espacios libres");
 
                     numeroAnyadir = pedirCantidadItem("madera");
-                    for (int i = 0; i < blocks.size(); i++) {
-
-                        if (blocks.get(i).getNombre().equals("madera") && blocks.get(i).getCantidad() < 64) { // Si ya hay un bloque de piedra y está menos de 64, anyadimos la piedra
-                            while (blocks.get(i).getCantidad() < 64 && numeroAnyadir != 0) {
-
-                                blocks.get(i).setCantidad(blocks.get(i).getCantidad() + 1);
-                                numeroAnyadir--;
-                            }
-                        }
-
-
-                    }
+                    numeroAnyadir =  anyadirEnEspaciosVaciosAmpliables(numeroAnyadir, "madera", 64);
+                    anyadido = true;
                     // Si veo que no hay un elemento piedra en el los blockes y aun tengo cantidad para anyadir, busco un blocke vacio.
                     if (numeroAnyadir != 0) {
 
@@ -292,7 +256,9 @@ public class Ejer5 {
                         System.out.println("Anyadido correctamente");
                     } else {
                         System.out.println("No se puede anyadir mas al inventario");
+                        System.out.println("A sobrado " + numeroAnyadir);
                     }
+                    Lib.pausa();
 
 
                     break;
@@ -302,18 +268,8 @@ public class Ejer5 {
                     System.out.println("Hay " + espaciosLibres + " espacios libres");
 
                     numeroAnyadir = pedirCantidadItem("huevo");
-                    for (int i = 0; i < blocks.size(); i++) {
-
-                        if (blocks.get(i).getNombre().equals("huevo") && blocks.get(i).getCantidad() < 16) { // Si ya hay un bloque de piedra y está menos de 64, anyadimos la piedra
-                            while (blocks.get(i).getCantidad() < 16 && numeroAnyadir != 0) {
-
-                                blocks.get(i).setCantidad(blocks.get(i).getCantidad() + 1);
-                                numeroAnyadir--;
-                            }
-                        }
-
-
-                    }
+                    numeroAnyadir =  anyadirEnEspaciosVaciosAmpliables(numeroAnyadir, "huevo", 16);
+                    anyadido = true;
                     // Si veo que no hay un elemento piedra en el los blockes y aun tengo cantidad para anyadir, busco un blocke vacio.
                     if (numeroAnyadir != 0) {
 
@@ -354,9 +310,10 @@ public class Ejer5 {
                         System.out.println("Anyadido correctamente");
                     } else {
                         System.out.println("No se puede anyadir mas al inventario");
+                        System.out.println("A sobrado " + numeroAnyadir);
                     }
 
-
+                    Lib.pausa();
 
                     break;
                 case 6:
@@ -365,18 +322,8 @@ public class Ejer5 {
                     System.out.println("Hay " + espaciosLibres + " espacios libres");
 
                     numeroAnyadir = pedirCantidadItem("perla");
-                    for (int i = 0; i < blocks.size(); i++) {
-
-                        if (blocks.get(i).getNombre().equals("perla") && blocks.get(i).getCantidad() < 16) { // Si ya hay un bloque de piedra y está menos de 64, anyadimos la piedra
-                            while (blocks.get(i).getCantidad() < 16 && numeroAnyadir != 0) {
-
-                                blocks.get(i).setCantidad(blocks.get(i).getCantidad() + 1);
-                                numeroAnyadir--;
-                            }
-                        }
-
-
-                    }
+                    numeroAnyadir =  anyadirEnEspaciosVaciosAmpliables(numeroAnyadir, "perla", 16);
+                    anyadido = true;
                     // Si veo que no hay un elemento piedra en el los blockes y aun tengo cantidad para anyadir, busco un blocke vacio.
                     if (numeroAnyadir != 0) {
 
@@ -417,10 +364,11 @@ public class Ejer5 {
                         System.out.println("Anyadido correctamente");
                     } else {
                         System.out.println("No se puede anyadir mas al inventario");
+                        System.out.println("A sobrado " + numeroAnyadir);
                     }
 
 
-
+                    Lib.pausa();
 
                     break;
                 case 0:
@@ -457,7 +405,52 @@ public class Ejer5 {
     }
 
     /**
-     * Elimina un item del inventario, pidiendo cuanto tambien
+     * Anyade items a los espacios libres PARA NO AMPLIABLES!
+     * @param numeroAnyadir La cantidad
+     * @param item el item
+     * @return lo que no se pudo anyadir
+     */
+    public int anyadirEnEspaciosVaciosNoAmpliable(int numeroAnyadir, ItemBlock item){
+        int contador = 0;
+        for (int i = 0; contador < numeroAnyadir; i++) { // El bucle continua hasta anyadir todos los items.
+
+            if (blocks.get(i).getNombre().equals("VACIO")) {
+                blocks.set(i, item);
+                blocks.get(i).setCantidad(1);
+                contador++;
+
+            }
+
+        }
+        return  numeroAnyadir;
+    }
+
+    /**
+     * Anyade los items a los hucos que ya existen para los items ampliables
+     * @param numeroAnyadir El numero de items
+     * @param nombreItem el nombre del item
+     * @param cantidadMaxima la cantidad maxima de cada item
+     * @return los items que sobraron
+     */
+    public int anyadirEnEspaciosVaciosAmpliables( int numeroAnyadir, String nombreItem, int cantidadMaxima){
+        for (int i = 0; i < blocks.size(); i++) {
+
+            if (blocks.get(i).getNombre().equals(nombreItem) && blocks.get(i).getCantidad() < cantidadMaxima) { // Si ya hay un bloque de piedra y está menos de 64, anyadimos la piedra
+                while (blocks.get(i).getCantidad() < cantidadMaxima && numeroAnyadir != 0) {
+
+                    blocks.get(i).setCantidad(blocks.get(i).getCantidad() + 1);
+                    numeroAnyadir--;
+                }
+            }
+
+
+        }
+        return  numeroAnyadir;
+    }
+
+    /**
+     * Elimina un item del inventario, pidiendo cuanto tambien.
+     * Los Items se asignan con su numero  (1 -7)
      */
     public void eliminarElemento(){
         lector = new Scanner(System.in);
